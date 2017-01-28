@@ -107,6 +107,7 @@ void Call::end_call() {
     std::ofstream myfile(status_filename);
     std::stringstream shell_command;
     Call_Source *wav_src_list = get_recorder()->get_source_list();
+
     int wav_src_count         = get_recorder()->get_source_count();
 
     if (myfile.is_open())
@@ -284,6 +285,9 @@ int Call::get_tdma() {
 }
 
 void Call::update(TrunkMessage message) {
+  if (message.source != 0) {
+  BOOST_LOG_TRIVIAL(error) << "Message src: " << message.source;
+}
   last_update = time(NULL);
 }
 

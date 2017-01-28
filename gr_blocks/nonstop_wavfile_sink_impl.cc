@@ -312,6 +312,7 @@ bool nonstop_wavfile_sink_impl::add_source(long src, double position) {
 
   Call_Source call_source = { src, time(NULL), position };
 
+  BOOST_LOG_TRIVIAL(error) << "Stream src: " << src;
   if (d_src_count < 1) {
     src_list[d_src_count] = call_source;
     d_src_count++;

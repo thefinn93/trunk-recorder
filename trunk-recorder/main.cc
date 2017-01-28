@@ -40,8 +40,6 @@
 #include "systems/system.h"
 #include "systems/smartnet_trunking.h"
 #include "systems/p25_trunking.h"
-#include "systems/smartnet_crc.h"
-#include "systems/smartnet_deinterleave.h"
 #include "systems/smartnet_parser.h"
 #include "systems/p25_parser.h"
 #include "systems/parser.h"
@@ -1035,6 +1033,7 @@ int main(void)
   smartnet_parser = new SmartnetParser(); // this has to eventually be generic;
   p25_parser      = new P25Parser();
 
+
   tb->lock();
   load_config();
 
@@ -1051,9 +1050,10 @@ int main(void)
 
 
   if (monitor_system()) {
-    tb->unlock();
-    tb->start();
 
+
+    tb->unlock();
+  tb->start();
     monitor_messages();
 
     // ------------------------------------------------------------------
@@ -1063,7 +1063,7 @@ int main(void)
     tb->stop();
     tb->wait();
   } else {
-    tb->unlock();
+    //tb->unlock();
     BOOST_LOG_TRIVIAL(error) << "Unable to setup a System to record, exiting..." <<  std::endl;
   }
 
