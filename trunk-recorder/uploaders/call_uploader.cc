@@ -181,10 +181,10 @@ void send_call(Call *call, System *sys, Config config) {
   pthread_t    thread;
 
 
-  boost::regex  ex("(http|https)://([^/ :]+):?([^/ ]*)(/?[^ #?]*)\\x3f?([^ #]*)#?([^ ]*)");
+  // boost::regex  ex("(http|https)://([^/ :]+):?([^/ ]*)(/?[^ #?]*)\\x3f?([^ #]*)#?([^ ]*)");
   boost::cmatch what;
 
-  if (regex_match(config.upload_server.c_str(), what, ex))
+  if (false)
   {
     // from: http://www.zedwood.com/article/cpp-boost-url-regex
     call_info->upload_server = config.upload_server;
